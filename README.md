@@ -11,7 +11,7 @@ Platforms supported
 Installation
 ---
 
-`cordova plugin add cordova-zip-plugin`
+`cordova plugin add https://github.com/Sandarth/cordova-plugin-jjzip.git`
 
 Easy Use  
 ---  
@@ -40,7 +40,7 @@ To Zip a folder
 ```
     var PathToFileInString  = cordova.file.externalRootDirectory+"HereIsMyFolder",
         PathToResultZip     = cordova.file.externalRootDirectory;
-    JJzip.zip(PathToFileInString, {target:PathToResultZip,name:"SuperZip"},function(data){
+    JJzip.zip(PathToFileInString, {target:PathToResultZip,name:"SuperZip", flat:true},function(data){
         /* Wow everiting goes good, but just in case verify data.success*/
     },function(error){
         /* Wow something goes wrong, check the error.message */
