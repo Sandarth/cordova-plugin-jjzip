@@ -94,7 +94,7 @@ public class JJzip extends CordovaPlugin {
         options.put("source", source);
         
         JSONObject extraOptObj  = args.optJSONObject(1);
-        String[] extraOptArr    = new String[]{"target","name"};
+        String[] extraOptArr    = new String[]{"target","name","flat"};
                 
         for (int i = 0; i < extraOptArr.length; i++) {
             String strOpt   = extraOptObj.optString(extraOptArr[i]);

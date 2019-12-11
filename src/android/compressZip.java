@@ -23,6 +23,7 @@ public class compressZip {
 	private String sourcePath 	= "";
 	private String sourceName 	= "";
 	private String targetName 	= "";
+	private Boolean flat 		= false;
     private final int BUFFER_SIZE = 2048;
     
 	public compressZip(JSONObject options) {
@@ -31,6 +32,7 @@ public class compressZip {
 		this.sourcePath 	= options.optString("sourcePath");
 		this.sourceName 	= options.optString("sourceName");
 		this.targetName 	= (options.optString("name").isEmpty())?this.sourceName:options.optString("name");
+		this.flat 			= (options.optString("flat").isEmpty())?false:options.optString("flat").equals("true") ? true : false;
 	}
 	
 	/**
@@ -91,7 +93,8 @@ public class compressZip {
 		
     	FileInputStream in = new FileInputStream(toZip.getAbsolutePath());
     	Log.d("JJDLTC Test Log "," Adding To Archive: " + toZip.getAbsolutePath());
-    	String zipEntryPath = toZip.getAbsolutePath().replace(this.sourcePath, "");
+    	// String zipEntryPath = toZip.getAbsolutePath().replace(this.sourcePath, "");
+		String zipEntryPath = (this.flat) ? toZip.getName() : toZip.getAbsolutePath().replace(this.sourcePath, "");
     	out.putNextEntry(new ZipEntry(zipEntryPath));
     	int len;
     	while ((len = in.read(tmpBuf)) > 0) {
